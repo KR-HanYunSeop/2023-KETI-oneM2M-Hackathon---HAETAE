@@ -92,8 +92,8 @@ There are about 430, 000 storm drains in Seoul. It is very difficult and ineffic
 By actively managing storm drain in real-time using various sensors, it is possible to take proactive measures to reduce the damage caused by disasters such as floods. Additionally, there is a significant preventive effect on the odor and environmental pollution caused by foreign substances or waste.HAETAE's Storm Darin Monitoring System will be a step in efforts to address/prevent the worsening flood damage.
 
 ### Demo Video
-
+<div align="center">
 [![Video Label](http://img.youtube.com/vi/2rTyg_ZOa-Q/0.jpg)](https://youtu.be/2rTyg_ZOa-Q)
-
+</div>
 
 
