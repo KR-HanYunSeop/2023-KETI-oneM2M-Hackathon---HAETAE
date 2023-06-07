@@ -27,3 +27,37 @@ We propose a monitoring service that can manage, maintain, and repair storm drai
 
 The picture above shows a service scenario.The sensor checks the condition of the storm drain at all times (with arduino/sensor).In the event of heavy rain forecast or odor detection, request rainwater management/monitoring to the server, respectively.When forecasting heavy rain, the manager monitors the condition of the storm drain and takes preventive measures.When odor is detected, request and take action to monitor the condition of the storm drain.The scenario described above is aimed at facilitating the management of rainwater collectors more effectively than the current method.
 
+<p align="center"><img src="https://hackster.imgix.net/uploads/attachments/1597401/-_extuo2BIRX.png?auto=compress%2Cformat&w=740&h=555&fit=max"></p>
+
+To enable sensing and perform computations, an Arduino board was connected to a Raspberry Pi via serial communication. The MOBIUS server was utilized as the server for data transmission.The protocols used HTTP and MQTT protocols, which are part of the oneM2M protocol.HTTP was used to upload and import data, and MQTT was used for subscriptions.The POST method was used to upload data, and the GET method was used to retrieve data periodically. In addition, subscription was used to receive data asynchronously.Due to the nature of using the camera, File Transfer Protocol (FTP) was available, but I simply wanted to byteize the image, load it on Mobius, and drag it from the server and save the picture (HTTP).
+
+### Used oneM2M Function
+
+- Application and service layer management: AE, CSE management functions
+- Communication management: Provides communication with other CSEs, AEs, and NSEs
+- Data management: Data storage and arbitration capabilities
+- Subscription and Notification: Provides subscriptions and corresponding notifications to track events occurring on a resource
+
+### Resource Structure
+
+<p align="center"><img src="https://hackster.imgix.net/uploads/attachments/1597398/image_0yylBRyndV.png?auto=compress%2Cformat&w=740&h=555&fit=max"></p>
+
+<p align="center"><img src="https://hackster.imgix.net/uploads/attachments/1597400/_2023-06-03__10_56_49_bOUcsqgKSG.png?auto=compress%2Cformat&w=740&h=555&fit=max"></p>
+
+### System Architecture
+
+Connect Arduino Mega and Raspberry Pi 4 via serial communication.In Arduino, an operation for sensing values and event situation detection was conducted, and the odor threshold and the water level threshold were set through tests.It is judged that drainage does not proceed as it is recognized that the odor caused by foreign substances has occurred when the odor and water level to the degree of exceeding the threshold are generated.Serial communication sends signals to raspberry pi 4 in the rain pits.The Raspberry Pi continuously reads values from the Arduino and triggers an abnormal state when values are transmitted. Information from the gas sensor is sent as gas(CNT) and information from the water level sensor is sent as water(CNT) using the POST method.
+
+Each CNT(gas and water) is subscribed to by the AE. When data is received in the gas(CNT) or water(CNT) the camera starts capturing images.
+
+The captured images are converted into bytes and uploaded to the camera(CNT) using the POST method.
+
+The server (MOBIUS Ubuntu Server) executes Python code when buttons are pressed on the web page to retrieve the camera byte information stored in MOBIUS using the GET method.
+
+The retrieved byte information is decoded and stored on the server.
+
+Users (administrators) can use the web page to maintain, repair, and monitor the status of the rainwater collector in real-time or when abnormal situations are detected.
+
+- Gas Sensor / Camera Operation
+
+<p align="center"><img src="https://hackster.imgix.net/uploads/attachments/1597592/___Cqq8KRu5TL.gif?auto=compress&gifq=35&w=740&h=555&fit=max&fm=mp4"></p>
