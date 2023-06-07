@@ -60,4 +60,40 @@ Users (administrators) can use the web page to maintain, repair, and monitor the
 
 - Gas Sensor / Camera Operation
 
-<p align="center"><img src="https://hackster.imgix.net/uploads/attachments/1597592/___Cqq8KRu5TL.gif?auto=compress&gifq=35&w=740&h=555&fit=max&fm=mp4"></p>
+<p align="center"><img src="https://github.com/KR-HanYunSeop/2023-KETI-oneM2M-Hackathon-HAETAE/assets/111222017/d227a6c8-0fe0-40f3-8166-9c9b5dfc6f5e"></p>
+
+When resources are loaded into gas (CNT) through the subscription feature, the camera starts capturing images and stores the captured image resources in camera(CNT).
+
+- Water Sensor Operation
+
+<p align="center"><img src="https://github.com/KR-HanYunSeop/2023-KETI-oneM2M-Hackathon-HAETAE/assets/111222017/bca4ba1b-3ddb-44a0-b59d-5b113d715ed4"></p>
+
+Similarly, the water level sensor values are received, and the data is being loaded into the water(CNT) resource.
+
+- CV
+
+<p align="center"><img src="https://github.com/KR-HanYunSeop/2023-KETI-oneM2M-Hackathon-HAETAE/assets/111222017/f07680c0-7c88-4eae-833a-394f7ccb6142"></p>
+
+<p align="center"><img src="https://github.com/KR-HanYunSeop/2023-KETI-oneM2M-Hackathon-HAETAE/assets/111222017/077c0f83-7d34-46f7-9d15-d9c824aa7246"></p>
+
+The OpenCV (Computer Vision) library is utilized to detect the lid area where water is falling. Initially, the Canny algorithm is applied to extract the contour lines. Then, the HoughLinesP algorithm is used to apply the Hough transform and extract the number of lines present. By adjusting the min_threshold and max_threshold values to lower values, even smaller lines can be detected, making the detection more sensitive.
+
+When there is no trash or obstruction, only the lines of the lid are visible. However, if there is trash or an obstruction that blocks the hole on the lid, the number of lines and their patterns are analyzed to determine the current situation. In such cases, the system captures the current scene and sends the captured image to the server.
+
+### Web Service
+
+<p align="center"><img src="https://github.com/KR-HanYunSeop/2023-KETI-oneM2M-Hackathon-HAETAE/assets/111222017/21c1d587-ad83-455b-a048-0f9dd2d5ab26"></p>
+
+As for the form of the web page, the server used node.js and made it using HTML and Bootstrap.On the web page where you can directly monitor the rainwater catch, if the values of the sensor exceed a certain number, you can receive pictures taken by the camera and check them in real time.When each raindrop button is pressed on the web page, the monitor screen detects an abnormal situation and shows a picture taken by the notified camera. The administrator can check the photos to manage, repair, and maintain specific storm drains.
+
+### Expected benefits
+
+There are about 430, 000 storm drains in Seoul. It is very difficult and inefficient for a person to manage it daily. If it is possible to continuously monitor the condition and provide feedback, it will be possible to manage rainwater receiving more efficiently.
+By actively managing storm drain in real-time using various sensors, it is possible to take proactive measures to reduce the damage caused by disasters such as floods. Additionally, there is a significant preventive effect on the odor and environmental pollution caused by foreign substances or waste.HAETAE's Storm Darin Monitoring System will be a step in efforts to address/prevent the worsening flood damage.
+
+### Demo Video
+
+
+
+
+
