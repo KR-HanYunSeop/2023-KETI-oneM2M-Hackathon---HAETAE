@@ -33,7 +33,6 @@ To enable sensing and perform computations, an Arduino board was connected to a 
 
 ### Used oneM2M Function
 
-- Application and service layer management: AE, CSE management functions
 - Communication management: Provides communication with other CSEs, AEs, and NSEs
 - Data management: Data storage and arbitration capabilities
 - Subscription and Notification: Provides subscriptions and corresponding notifications to track events occurring on a resource
@@ -62,13 +61,13 @@ Users (administrators) can use the web page to maintain, repair, and monitor the
 
 <p align="center"><img src="https://github.com/KR-HanYunSeop/2023-KETI-oneM2M-Hackathon-HAETAE/assets/111222017/d227a6c8-0fe0-40f3-8166-9c9b5dfc6f5e"></p>
 
-When resources are loaded into gas (CNT) through the subscription feature, the camera starts capturing images and stores the captured image resources in camera(CNT).
+When Arduino performs calculations and exceeds a certain threshold, it sends the information to Raspberry Pi via serial communication. Once an abnormal situation occurs, Raspberry Pi identifies the sensor from which the information was received and sends '1(True)' as a signal. Afterward, the data is stored in the MOBIUS server, and since there are subscriptions for each CNT, the camera starts capturing images and the image resources are stored in the camera(CNT).
 
 - Water Sensor Operation
 
 <p align="center"><img src="https://github.com/KR-HanYunSeop/2023-KETI-oneM2M-Hackathon-HAETAE/assets/111222017/bca4ba1b-3ddb-44a0-b59d-5b113d715ed4"></p>
 
-Similarly, the water level sensor values are received, and the data is being loaded into the water(CNT) resource.
+Similarly, when the water level sensor exceeds a certain threshold(over 512(int)) or the value does not decrease, it sends '1(True)' to the MOBIUS server.
 
 - CV
 
